@@ -1,8 +1,10 @@
 # asap7_contest
 
-#PPA Improvement of ibex using OpenROAD Flow Scripts
+# PPA Improvement of ibex using OpenROAD Flow Scripts
 
-#Tool Flow of OpenROAD Flow Scripts
+# Tool Flow of OpenROAD Flow Scripts
+
+
 ![flow](./images/flow.png)
 
 # Challenges :
@@ -70,4 +72,4 @@ repair_design
 
 In `route` we modified the global routing layer adjustment attribute in our design to get the better PPA and modify the routing layer to use the metal layer prperly for signal routing.
 
-![route](./images/route.png)
+![route](./images/routing.png)
