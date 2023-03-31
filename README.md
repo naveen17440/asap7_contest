@@ -20,12 +20,15 @@
 
 #Steps followed:
 1.Build and install using `./build_openroad.sh`
+
 2.Comment the ibex/config.mk in the makefile at OpenROAD-flow-scripts/flow folder
 
 ![make](./images/make.png)
 
 3.Run `make` 
+
 4.Note the timings from the logs
+
 5.Repeat from Step 1 again
 
 #
@@ -101,12 +104,14 @@ In `route` we modified the global routing layer adjustment attribute in our desi
 
 
 #Before changes:
+
 ![before](./images/before.png)
 
 ![before1](./images/before_power.png)
 
 
 #after changes:
+
 ![after](./images/after_final.png)
 
 ![after1](./images/after_power.png)
