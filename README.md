@@ -1,5 +1,7 @@
 # asap7_contest
 
+![7nm](./images/7nm.png)
+
 # PPA Improvement of ibex using OpenROAD Flow Scripts
 
 # Tool Flow of OpenROAD Flow Scripts
@@ -7,6 +9,24 @@
 
 ![flow](./images/flow.png)
 
+
+#Design Name: Ibex
+
+
+![Literature surver report](./asap7_contest.pdf)
+
+![Final report](./final_report.pdf)
+
+
+#Steps followed:
+1.Build and install using `./build_openroad.sh`
+2.Comment the ibex/config.mk in the makefile at OpenROAD-flow-scripts/flow folder
+
+![make](./images/make.png)
+
+3.Run `make` 
+4.Note the timings from the logs
+5.Repeat from Step 1 again
 
 #
 # Challenges :
@@ -78,3 +98,15 @@ repair_design
 In `route` we modified the global routing layer adjustment attribute in our design to get the better PPA and modify the routing layer to use the metal layer prperly for signal routing.
 
 ![route](./images/routing.png)
+
+
+#Before changes:
+![before](./images/before.png)
+
+![before1](./images/before_power.png)
+
+
+#after changes:
+![after](./images/after_final.png)
+
+![after1](./images/after_power.png)
