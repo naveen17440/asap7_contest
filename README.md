@@ -7,6 +7,8 @@
 
 ![flow](./images/flow.png)
 
+
+#
 # Challenges :
 
 1. Finding proper pin placement.
@@ -24,6 +26,7 @@
 7. Keep the design DRC free while increasing the clock frequency.
 
 
+#
 # Observation :
 
 1. In the library file there wasn't any clock buffer cell so we had to use the normal buffer cell and clock inverter.
@@ -31,23 +34,25 @@
 2. While increasing the clock frequency we observe some DRC violations at routing stage.
 
 
+#
 # Changes done in design :
 
-`Floorplan`
+`Floorplan:`
 
 Set unconstraints paths into false path.
 
-`CTS`
+`CTS:`
 
 Changed the CTS cell.
 Defining clock routing layer.
 
-`Route`
+`Route:`
 
 Adjust the global routing layer.
 Changing the metal routing layer.
 
 
+#
 # Make changes :
 In `floorplan.sdc` file we added the false path to clear the unconstrainrd paths.
 ```
