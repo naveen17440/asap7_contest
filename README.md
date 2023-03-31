@@ -10,7 +10,7 @@
 ![flow](./images/flow.png)
 
 
-#Design Name: Ibex
+# Design Name: Ibex
 
 
 ![Literature surver report](./asap7_contest.pdf)
@@ -18,7 +18,9 @@
 ![Final report](./final_report.pdf)
 
 
-#Steps followed:
+# Steps followed:
+
+
 1.Build and install using `./build_openroad.sh`
 
 2.Comment the ibex/config.mk in the makefile at OpenROAD-flow-scripts/flow folder
@@ -103,14 +105,14 @@ In `route` we modified the global routing layer adjustment attribute in our desi
 ![route](./images/routing.png)
 
 
-#Before changes:
+# Before changes:
 
 ![before](./images/before.png)
 
 ![before1](./images/before_power.png)
 
 
-#after changes:
+# After changes:
 
 ![after](./images/after_final.png)
 
