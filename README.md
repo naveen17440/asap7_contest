@@ -4,18 +4,19 @@
 
 # PPA Improvement of ibex using OpenROAD Flow Scripts
 
-# Tool Flow of OpenROAD Flow Scripts
+# Tool Flow of OpenROAD Flow Scripts:
 
 
 ![flow](./images/flow.png)
 
-
+#
 # Design Name: Ibex
 
 
-![Literature surver report](./asap7_contest.pdf)
+![Literature survey report](./asap7_contest.pdf)
 
 ![Final report](./final_report.pdf)
+
 
 
 # Steps followed:
@@ -104,6 +105,9 @@ In `route` we modified the global routing layer adjustment attribute in our desi
 
 ![route](./images/routing.png)
 
+
+#
+# Final report:
 
 # Before changes:
 
