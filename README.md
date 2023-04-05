@@ -80,7 +80,7 @@ Changing the metal routing layer.
 
 #
 # Make changes :
-In `floorplan.sdc` file we updated the false path to clear the unconstrainrd paths and endpoints which are `TIE` low cells.
+In `floorplan.sdc` file we updated the false path to clear the unconstrained paths and endpoints which are `TIE` low cells.
 ```
 #set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
 set_false_path -from [get_ports {rst_ni}]
@@ -103,11 +103,11 @@ set_false_path -from [get_pins _36182_/CLK]
 set_false_path -from [get_pins _36313_/CLK]
 ```
 
-In `cts` stage we changed the clock routing layer and CTS cell list for our design to improve the timing and also changed the diameter to improve the clock skew.
+In `cts` stage we changed the clock routing layer and CTS cell list for our design to improve the timing.
 
 ![cts](./images/cts.png)
 
-In `route` we modified the global routing layer adjustment attribute in our design to get the better PPA and modify the routing layer to use the metal layer prperly for signal routing.
+In `route` we modified the global routing layer adjustment attribute in our design to get the better PPA and modify the routing layer to use the metal layer properly for signal routing.
 
 ![route](./images/routing.png)
 
