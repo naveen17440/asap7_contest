@@ -80,24 +80,23 @@ Changing the metal routing layer.
 
 #
 # Make changes :
-In `floorplan.sdc` file we added the false path to clear the unconstrainrd paths.
+In `floorplan.sdc` file we updated the false path to clear the unconstrainrd paths and endpoints which are `TIE` low cells.
 ```
-set_false_path -to [get_ports {rst_ni}]
-set_false_path -from [get_pins _36182_/CLK]
-set_false_path -from [get_pins _36313_/CLK]
+#set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
+set_false_path -from [get_ports {rst_ni}]
+set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {test_en_i}]
+#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {alert_major_o}]
+set_false_path -to [get_ports {alert_major_o}]
+#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {alert_minor_o}]
+set_false_path -to [get_ports {alert_minor_o}]
+set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {core_sleep_o}]
+#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {data_addr_o[0]}]
+set_false_path -to [get_ports {data_addr_o[0]}]
+#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {data_addr_o[1]}]
+set_false_path -to [get_ports {data_addr_o[1]}]
 ```
 
-In `cts` stage we changed the clock routing layer and CTS cell list for our design to improve the timing and also changed the cluster size and diameter to improve the clock skew.
-
-We used `repair_design` to fix the design violations.
-
-```
-set_routing_layer -clock M3-M5
-set_wire_rc -clock -layer M5
-set_wire_rc -clock -layer M4
-set_wier_rc -clock -layer M3
-repair_design
-```
+In `cts` stage we changed the clock routing layer and CTS cell list for our design to improve the timing and also changed the diameter to improve the clock skew.
 
 ![cts](./images/cts.png)
 
