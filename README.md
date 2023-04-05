@@ -94,6 +94,8 @@ set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports
 set_false_path -to [get_ports {data_addr_o[0]}]
 #set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {data_addr_o[1]}]
 set_false_path -to [get_ports {data_addr_o[1]}]
+set_false_path -from [get_pins _36182_/CLK]
+set_false_path -from [get_pins _36313_/CLK]
 ```
 
 In `cts` stage we changed the clock routing layer and CTS cell list for our design to improve the timing and also changed the diameter to improve the clock skew.
