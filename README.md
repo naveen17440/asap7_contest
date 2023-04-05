@@ -84,16 +84,21 @@ In `floorplan.sdc` file we updated the false path to clear the unconstrainrd pat
 ```
 #set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
 set_false_path -from [get_ports {rst_ni}]
-set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {test_en_i}]
+
 #set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {alert_major_o}]
 set_false_path -to [get_ports {alert_major_o}]
 #set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {alert_minor_o}]
 set_false_path -to [get_ports {alert_minor_o}]
-set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {core_sleep_o}]
+
 #set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {data_addr_o[0]}]
 set_false_path -to [get_ports {data_addr_o[0]}]
 #set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {data_addr_o[1]}]
 set_false_path -to [get_ports {data_addr_o[1]}]
+#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {instr_addr_o[0]}]
+set_false_path -to [get_ports {instr_addr_o[0]}]
+#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {instr_addr_o[1]}]
+set_false_path -to [get_ports {instr_addr_o[1]}]
+
 set_false_path -from [get_pins _36182_/CLK]
 set_false_path -from [get_pins _36313_/CLK]
 ```
