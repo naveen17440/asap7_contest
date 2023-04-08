@@ -47,9 +47,7 @@
 
 5. Distributing the metal later property for clock tree, signal net and pin to get better PPA without zero -ve skew.
 
-6. Adjust the global routing layer properly to minimize routing congestion.
-
-7. Keep the design DRC free while increasing the clock frequency.
+6. Keep the design DRC free while increasing the clock frequency.
 
 
 #
@@ -72,15 +70,12 @@ Set unconstraints paths into false path.
 Changed the CTS cell.
 Defining clock routing layer.
 
-`Route:`
-
-Adjust the global routing layer.
-Changing the metal routing layer.
-
 
 #
 # Make changes :
-In `floorplan.sdc` file we updated the false path to clear the unconstrained paths and endpoints which are `TIE` low cells.
+
+In `2_floorplan.sdc` file we updated the false path to clear the unconstrained paths and endpoints which are `TIE` low cells. In `constraint.sdc` file changed the clk io percentage into 0.15 that is  `set clk_io_pct 0.15` to improve the timing of the design.
+
 ```
 #set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
 set_false_path -from [get_ports {rst_ni}]
@@ -103,13 +98,12 @@ set_false_path -from [get_pins _36182_/CLK]
 set_false_path -from [get_pins _36313_/CLK]
 ```
 
-In `cts` stage we changed the clock routing layer and CTS cell list for our design to improve the timing.
+In `cts` stage we changed CTS cell list in `platforms` `config.mk` file for our design to improve the timing.
 
-![cts](./images/cts.png)
+```
+export CTS_BUF_CELL  ?= BUFx8_ASAP7_75t_R
+```
 
-In `route` we modified the global routing layer adjustment attribute in our design to get the better PPA and modify the routing layer to use the metal layer properly for signal routing.
-
-![route](./images/routing.png)
 
 
 #
