@@ -22,61 +22,49 @@
 # Steps followed:
 
 
-1.Build and install using `./build_openroad.sh`
+1.In Ubuntu22.04 followed following instruction to build and install: 
+```
+sudo apt update && sudo apt-get upgrade
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+./build_openroad.sh
+```
+ORFS specific package installer step may vary wrt., above instructions. Always refer to this [document](https://openroad-flow-scripts.readthedocs.io/en/latest/user/BuildLocally.html) for latest installation steps to follow.
 
-2.Comment the ibex/config.mk in the makefile at OpenROAD-flow-scripts/flow folder
+Then run below steps:
+```
+source setup_env.sh
+cd flow
+```
+
+2.Comment the default design to be executed from `Makefile` and un-comment `DESIGN_CONFIG=./designs/asap7/ibex/config.mk`.
 
 ![make](./images/make.png)
 
-3.Run `make` 
+3.Run following steps manually:
+```
+make synth
+make floorplan
+```
 
-4.Note the timings from the logs
+4. Check the timing report and choose path group to set as false path. Update `2_floorplan.sdc` and continue to `placement` stage.
 
-5.Repeat from Step 1 again
+```
+make place
+make cts
+make route
+make finish
+```
 
-#
-# Challenges :
-
-1. Finding proper pin placement.
-
-2. Maintain proper cluster size and diameter to gain best clock skew.
-
-3. Finding the appropriate buffer or clock inverter cell for the better timing.
-
-4. High routing congestion while increasing the clock ferquency.
-
-5. Distributing the metal later property for clock tree, signal net and pin to get better PPA without zero -ve skew.
-
-6. Keep the design DRC free while increasing the clock frequency.
-
-
-#
-# Observation :
-
-1. In the library file there wasn't any clock buffer cell so we had to use the normal buffer cell and clock inverter.
-
-2. While increasing the clock frequency we observe some DRC violations at routing stage.
-
-
-#
-# Changes done in design :
-
-`Floorplan:`
-
-Set unconstraints paths into false path.
-
-`CTS:`
-
-Changed the CTS cell.
-Defining clock routing layer.
-
+If you check each stage timing report from placement stage those un-constrained paths are removed from the OpenSTA logs.
 
 #
 # Make changes :
 
-In `constraint.sdc` file I've changed the clk io percentage into 0.15 that is  `set clk_io_pct 0.15` to improve the timing of the design.
+In `constraint.sdc` file, I've changed the clk io percentage into `0.15` ie., `set clk_io_pct 0.15` to reduce input/output delay value to meet timing violations and fix the slack.
 
-In `2_floorplan.sdc` file has been updated the false path to clear the unconstrained paths and endpoints which are `TIE` low cells. 
+In `2_floorplan.sdc` file has been updated the false path to clear the unconstrained paths and endpoints which are `TIELO*`, async path group which is connected reset pins `rst_ni`. 
 
 ```
 #set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
@@ -103,9 +91,10 @@ set_false_path -from [get_pins _36313_/CLK]
 In `CTS` stage I've changed the CTS buffer list in `platforms/asap7/config.mk` file in our design to improve the timing.
 
 ```
-export CTS_BUF_CELL  ?= BUFx8_ASAP7_75t_R
+export CTS_BUF_CELL  = BUFx8_ASAP7_75t_R
 ```
 
+So with above changes I'm able to meet TNS/WNS value as `0` from negative slack value.
 
 
 #
