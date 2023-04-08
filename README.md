@@ -74,7 +74,9 @@ Defining clock routing layer.
 #
 # Make changes :
 
-In `2_floorplan.sdc` file we updated the false path to clear the unconstrained paths and endpoints which are `TIE` low cells. In `constraint.sdc` file changed the clk io percentage into 0.15 that is  `set clk_io_pct 0.15` to improve the timing of the design.
+In `constraint.sdc` file I've changed the clk io percentage into 0.15 that is  `set clk_io_pct 0.15` to improve the timing of the design.
+
+In `2_floorplan.sdc` file has been updated the false path to clear the unconstrained paths and endpoints which are `TIE` low cells. 
 
 ```
 #set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
@@ -98,7 +100,7 @@ set_false_path -from [get_pins _36182_/CLK]
 set_false_path -from [get_pins _36313_/CLK]
 ```
 
-In `cts` stage we changed CTS cell list in `platforms` `config.mk` file for our design to improve the timing.
+In `CTS` stage I've changed the CTS buffer list in `platforms/asap7/config.mk` file in our design to improve the timing.
 
 ```
 export CTS_BUF_CELL  ?= BUFx8_ASAP7_75t_R
