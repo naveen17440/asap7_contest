@@ -43,12 +43,13 @@ cd flow
 ![make](./images/make.png)
 
 3.Run following steps manually:
+
 ```
 make synth
 make floorplan
 ```
 
-4. Check the timing report and choose path group to set as false path. Update `2_floorplan.sdc` and continue to `placement` stage.
+4.Check the timing report and choose path group to set as false path. Update `2_floorplan.sdc` and continue to `placement` stage.
 
 ```
 make place
@@ -88,13 +89,13 @@ set_false_path -from [get_pins _36182_/CLK]
 set_false_path -from [get_pins _36313_/CLK]
 ```
 
-In `CTS` stage I've changed the CTS buffer list in `platforms/asap7/config.mk` file in our design to improve the timing.
+In `CTS` stage I've updated CTS buffer list in `designs/asap7/ibex/config.mk` file in our design to improve the timing from default value taken from `platforms/asap7/config.mk`
 
 ```
 export CTS_BUF_CELL  = BUFx8_ASAP7_75t_R
 ```
 
-So with above changes I'm able to meet TNS/WNS value as `0` from negative slack value.
+So with all the above mentioned changes I'm able to meet TNS/WNS value as `0` from negative slack value.
 
 
 #
