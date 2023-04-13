@@ -65,7 +65,7 @@ If you check each stage timing report from placement stage those un-constrained 
 
 In `constraint.sdc` file, I've changed the clk io percentage into `0.15` ie., `set clk_io_pct 0.15` to reduce input/output delay value to meet timing violations and fix the slack.
 
-In `2_floorplan.sdc` file has been updated the false path to clear the unconstrained paths and endpoints which are `TIELO*`, async path group which is connected reset pins `rst_ni`. 
+In `2_floorplan.sdc` file has been updated the false path to clear the unconstrained paths and async path group which is connected reset pins `rst_ni`. 
 
 ```
 #set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
