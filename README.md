@@ -71,22 +71,6 @@ In `2_floorplan.sdc` file has been updated the false path to clear the unconstra
 #set_input_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {rst_ni}]
 set_false_path -from [get_ports {rst_ni}]
 
-#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {alert_major_o}]
-set_false_path -to [get_ports {alert_major_o}]
-#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {alert_minor_o}]
-set_false_path -to [get_ports {alert_minor_o}]
-
-#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {data_addr_o[0]}]
-set_false_path -to [get_ports {data_addr_o[0]}]
-#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {data_addr_o[1]}]
-set_false_path -to [get_ports {data_addr_o[1]}]
-#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {instr_addr_o[0]}]
-set_false_path -to [get_ports {instr_addr_o[0]}]
-#set_output_delay 352.0000 -clock [get_clocks {core_clock}] -add_delay [get_ports {instr_addr_o[1]}]
-set_false_path -to [get_ports {instr_addr_o[1]}]
-
-set_false_path -from [get_pins _36182_/CLK]
-set_false_path -from [get_pins _36313_/CLK]
 ```
 
 In `CTS` stage I've updated CTS buffer list in `designs/asap7/ibex/config.mk` file in our design to improve the timing from default value taken from `platforms/asap7/config.mk`
